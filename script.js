@@ -8,7 +8,7 @@ import {
     inputDuration,
     inputCadence,
     inputElevation
-} from './modules/DOM_Elements.js';
+} from '/modules/DOM_Elements.js';
 
 
 class App {
