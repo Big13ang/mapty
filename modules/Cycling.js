@@ -1,4 +1,4 @@
-import { Workout } from './modules/Workout.js';
+import { Workout } from '/modules/Workout.js';
 
 export class Cycling extends Workout {
     type = "cycling";
