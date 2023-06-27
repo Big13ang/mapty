@@ -49,12 +49,6 @@ a:visited {
   flex-direction: column;
 }
 
-.logo {
-  height: 5.2rem;
-  align-self: center;
-  margin-bottom: 4rem;
-}
-
 .workouts {
   list-style: none;
   height: 77vh;
@@ -222,11 +216,22 @@ a:visited {
   border-left: 5px solid var(--color-brand--1);
 }
 
-
 /* Responsive */
 
-@media only screen and (max-width: 768px)  {
+@media only screen and (max-width: 768px) {
   .sidebar {
-    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    height: 45%;
+  }
+
+  .workout {
+    padding: 1rem 2rem;
+  }
+
+  .leaflet-popup .leaflet-popup-content {
+    font-size: 1.75;
   }
 }
