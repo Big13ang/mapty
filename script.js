@@ -1,74 +1,15 @@
-'use strict';
+import { Running } from '/modules/Running.js';
+import { Cycling } from '/modules/Cycling.js';
+import {
+    form,
+    containerWorkouts,
+    inputType,
+    inputDistance,
+    inputDuration,
+    inputCadence,
+    inputElevation
+} from './modules/DOM_Elements.js';
 
-// prettier-ignore
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-const form = document.querySelector('.form');
-const containerWorkouts = document.querySelector('.workouts');
-const inputType = document.querySelector('.form__input--type');
-const inputDistance = document.querySelector('.form__input--distance');
-const inputDuration = document.querySelector('.form__input--duration');
-const inputCadence = document.querySelector('.form__input--cadence');
-const inputElevation = document.querySelector('.form__input--elevation');
-
-class UUID {
-    constructor() { }
-    static generate() {
-        const randomNumber = Math.random().toString(36).substring(2, 36);
-        return btoa(`${randomNumber}-${btoa(`${randomNumber}-${randomNumber}`)}`);
-    }
-}
-
-class Workout {
-    id = UUID.generate();
-    date = new Date();
-
-    constructor(coords, distance, duration) {
-        this.coords = coords;
-        this.distance = distance;
-        this.duration = duration;
-    }
-
-    setDescribition() {
-        // ${this.type == "running" ? "🏃" : "🚴‍♀️"}
-        let date = `${months[this.date.getMonth()]} ${this.date.getDate()}`;
-        let [firstLetter, ...rest] = this.type;
-        let type = `${firstLetter.toUpperCase()}${rest.join('')}`;
-
-        this.describtion = `${type} on ${date}`;
-    }
-}
-
-class Running extends Workout {
-    type = "running";
-    constructor(coords, distance, duration, cadence) {
-        super(coords, distance, duration);
-        this.cadence = cadence;
-        this.calcPace();
-        this.setDescribition();
-    }
-
-    calcPace() {
-        // min/Km
-        this.pace = this.duration / this.distance;
-        return this.pace;
-    }
-}
-
-class Cycling extends Workout {
-    type = "cycling";
-    constructor(coords, distance, duration, elevation) {
-        super(coords, distance, duration);
-        this.elevation = elevation;
-        this.calcSpeed();
-        this.setDescribition();
-    }
-
-    calcSpeed() {
-        // Km/h
-        this.speed = this.distance / (this.duration / 60);
-    }
-}
 
 class App {
     #workouts = [];
